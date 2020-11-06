@@ -4,19 +4,8 @@ require 'date'
 # Класс Прогноз Метеосервиса — соответствует одному тегу <FORECAST>
 class MeteoserviceForecast
   # Массивы строк для времени суток и степени облачности
-  TIME_OF_DAY = %w(ночь утро день вечер).freeze
-  CLOUDINESS = %w(ясно малооблачно облачно пасмурно).freeze
-
-  # Конструктор класса записывает переданные параметры в соответствующие
-  # переменные экземпляра класса
-  def initialize(params)
-    @date = params[:date]
-    @time_of_day = params[:time_of_day]
-    @temperature_min = params[:temperature_min]
-    @temperature_max = params[:temperature_max]
-    @cloudiness = params[:cloudiness]
-    @max_wind = params[:max_wind]
-  end
+  TIME_OF_DAY = %w[ночь утро день вечер].freeze
+  CLOUDINESS = %w[ясно малооблачно облачно пасмурно].freeze
 
   # Метод класса from_xml_node возвращает экземпляр класса, прочитанные из
   # элемента XML-структуры с прогнозом
@@ -33,6 +22,17 @@ class MeteoserviceForecast
       cloudiness: node.elements['PHENOMENA'].attributes['cloudiness'].to_i,
       max_wind: node.elements['WIND'].attributes['max'].to_i
     )
+  end
+
+  # Конструктор класса записывает переданные параметры в соответствующие
+  # переменные экземпляра класса
+  def initialize(params)
+    @date = params[:date]
+    @time_of_day = params[:time_of_day]
+    @temperature_min = params[:temperature_min]
+    @temperature_max = params[:temperature_max]
+    @cloudiness = params[:cloudiness]
+    @max_wind = params[:max_wind]
   end
 
   def to_s
