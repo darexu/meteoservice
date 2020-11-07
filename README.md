@@ -21,7 +21,7 @@ ruby meteoservice.rb
 
 You can add city id from [meteoservice.ru](https://www.meteoservice.ru/content/export.html)
 
-Fill in the hash in the meteoservice.rb as in the example 
+Fill in the hash in the `meteoservice.rb` as in the example 
 
 	CITIES = {
 	  37 => 'Москва',
